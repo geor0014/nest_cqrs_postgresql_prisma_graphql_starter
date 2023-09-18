@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User, Prisma } from '@prisma/client';
-import { QueryBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllUsersQuery } from './queries/impl/get-all-users.query';
 import { GetUserByIdQuery } from './queries/impl/get-user-by-id.query';
+import { CreateUserCommand } from './commands/impl/create-user.command';
+import { UpdateUserCommand } from './commands/impl/update-user.comman';
+import { DeleteUserCommand } from './commands/impl/delete-user.command';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
     private queryBus: QueryBus,
+    private commandBus: CommandBus,
   ) {}
 
   async user(id: number): Promise<User | null> {
@@ -21,25 +25,18 @@ export class UserService {
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
-      data,
-    });
+    return this.commandBus.execute(new CreateUserCommand(data));
   }
 
   async updateUser(params: {
-    where: Prisma.UserWhereUniqueInput;
+    id: number;
     data: Prisma.UserUpdateInput;
   }): Promise<User> {
-    const { where, data } = params;
-    return this.prisma.user.update({
-      data,
-      where,
-    });
+    const { id, data } = params;
+    return this.commandBus.execute(new UpdateUserCommand(data, id));
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
-    return this.prisma.user.delete({
-      where,
-    });
+  async deleteUser(id: number): Promise<User> {
+    return this.commandBus.execute(new DeleteUserCommand(id));
   }
 }

@@ -35,13 +35,13 @@ export class UserController {
     @Body() data: Prisma.UserUpdateInput,
   ): Promise<UserModel> {
     return this.userService.updateUser({
-      where: { id: Number(id) },
       data,
+      id: Number(id),
     });
   }
 
   @Delete('/user/:id')
   async deleteUser(@Param('id') id: string): Promise<UserModel> {
-    return this.userService.deleteUser({ id: Number(id) });
+    return this.userService.deleteUser(Number(id));
   }
 }
