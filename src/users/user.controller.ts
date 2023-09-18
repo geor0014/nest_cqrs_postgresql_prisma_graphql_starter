@@ -16,12 +16,12 @@ export class UserController {
 
   @Get('user')
   async getUsers(): Promise<UserModel[]> {
-    return this.userService.users({});
+    return this.userService.users();
   }
 
   @Get('/user/:id')
   async getUser(@Param('id') id: string): Promise<UserModel> {
-    return this.userService.user({ id: Number(id) });
+    return this.userService.user(Number(id));
   }
 
   @Post('/user')

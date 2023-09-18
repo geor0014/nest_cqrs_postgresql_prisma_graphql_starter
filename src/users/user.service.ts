@@ -1,32 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User, Prisma } from '@prisma/client';
+import { QueryBus } from '@nestjs/cqrs';
+import { GetAllUsersQuery } from './queries/impl/get-all-users.query';
+import { GetUserByIdQuery } from './queries/impl/get-user-by-id.query';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private queryBus: QueryBus,
+  ) {}
 
-  async user(
-    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
-  ): Promise<User | null> {
-    return this.prisma.user.findUnique({
-      where: userWhereUniqueInput,
-    });
+  async user(id: number): Promise<User | null> {
+    return this.queryBus.execute(new GetUserByIdQuery(id));
   }
 
-  async users(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.UserWhereUniqueInput;
-    where?: Prisma.UserWhereInput;
-  }): Promise<User[]> {
-    const { skip, take, cursor, where } = params;
-    return this.prisma.user.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-    });
+  async users(): Promise<User[]> {
+    return this.queryBus.execute(new GetAllUsersQuery());
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
