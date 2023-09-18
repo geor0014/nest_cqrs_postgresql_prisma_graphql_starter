@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserModel {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Query {
+  getUsers: [UserModel!]!
+  getUserById(id: Float!): UserModel!
+}
+
+type Mutation {
+  createUser(CreateUserInput: CreateUserDto!): UserModel!
+  updateUser(id: Float!, UpdateUserInput: updateUserDto!): UserModel!
+  deleteUser(id: Float!): UserModel!
+}
+
+input CreateUserDto {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input updateUserDto {
+  name: String
+  email: String
+  password: String
+}
