@@ -74,6 +74,10 @@ Prisma simplifies database migrations. To apply migrations, run:
 npx prisma migrate dev
 ```
 
+### Adminer Access
+
+You can access Adminer at `http://localhost:8080` to manage your PostgreSQL database. Use the PostgreSQL credentials defined in your `.env` file.
+
 ### Testing
 
 This template includes unit and integration tests powered by Jest. Run the tests with:
