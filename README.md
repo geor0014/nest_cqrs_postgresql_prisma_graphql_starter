@@ -54,7 +54,6 @@ To quickly get started with this template, follow these steps:
 
 7. Visit `http://localhost:3000/graphql` in your browser to access the GraphQL playground.
 
-8. Access Adminer at `http://localhost:8080` to manage your PostgreSQL database. Use the PostgreSQL credentials defined in your `.env` file.
 
 ## Development
 
@@ -77,14 +76,6 @@ npx prisma migrate dev
 ### Adminer Access
 
 You can access Adminer at `http://localhost:8080` to manage your PostgreSQL database. Use the PostgreSQL credentials defined in your `.env` file.
-
-### Testing
-
-This template includes unit and integration tests powered by Jest. Run the tests with:
-
-```bash
-npm run test
-```
 
 ### GraphQL Schema
 
