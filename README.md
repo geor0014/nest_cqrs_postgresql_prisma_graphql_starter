@@ -1,73 +1,119 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS CQRS GraphQL Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg) ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Welcome to the NestJS CQRS GraphQL Template! This template is designed to kickstart your NestJS project with a focus on CQRS (Command Query Responsibility Segregation), PostgreSQL, GraphQL, Prisma, Adminer, and Docker. It provides a solid foundation for building scalable and maintainable applications.
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS**: A powerful Node.js framework for building scalable and maintainable server-side applications.
+- **CQRS**: Implement the CQRS architectural pattern for better separation of concerns in your application.
+- **GraphQL**: A flexible and efficient query language for your API, powered by Apollo Server.
+- **Prisma**: A modern database toolkit that simplifies database access with type-safe queries and migrations.
+- **TypeScript**: Enjoy the benefits of static typing and improved tooling.
+- **Linting and Formatting**: Pre-configured ESLint and Prettier settings for consistent code quality.
+- **Testing**: Unit and integration tests set up with Jest for robust code testing.
+- **Docker**: Dockerized PostgreSQL and Adminer for easy development and deployment.
 
-## Installation
+## Getting Started
+
+To quickly get started with this template, follow these steps:
+
+1. Clone this repository into a new directory:
+
+   ```bash
+   git clone <repository_url> my-nestjs-app
+   cd my-nestjs-app
+   ```
+
+2. Create a `.env` file based on `.env.example` and fill in the required environment variables.
+
+3. Start the development environment (PostgreSQL and Adminer) using Docker Compose:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+4. Install the project dependencies:
+
+   ```bash
+   npm install
+   ```
+
+5. Apply Prisma migrations to set up the database schema:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+6. Start the development server:
+
+   ```bash
+   npm run start:dev
+   ```
+
+7. Visit `http://localhost:3000/graphql` in your browser to access the GraphQL playground.
+
+8. Access Adminer at `http://localhost:8080` to manage your PostgreSQL database. Use the PostgreSQL credentials defined in your `.env` file.
+
+## Development
+
+### Database Setup
+
+This template uses PostgreSQL as the database. Ensure you have PostgreSQL installed and running. You can also use Docker to start a PostgreSQL container:
 
 ```bash
-$ npm install
+docker-compose up -d
 ```
 
-## Running the app
+### Prisma Migrations
+
+Prisma simplifies database migrations. To apply migrations, run:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npx prisma migrate dev
 ```
 
-## Test
+### Testing
+
+This template includes unit and integration tests powered by Jest. Run the tests with:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test
 ```
 
-## Support
+### GraphQL Schema
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+You can explore and interact with the GraphQL API using the GraphQL Playground, which is available at `http://localhost:3000/graphql` when the server is running.
 
-## Stay in touch
+## Further Reading
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Here are some resources for further reading on the technologies used in this template:
 
-## License
+### NestJS
 
-Nest is [MIT licensed](LICENSE).
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [NestJS CQRS](https://docs.nestjs.com/recipes/cqrs)
+
+### GraphQL
+
+- [GraphQL Official Documentation](https://graphql.org/)
+- [Apollo Server Documentation](https://www.apollographql.com/docs/apollo-server/)
+
+### Prisma
+
+- [Prisma Documentation](https://www.prisma.io/docs/)
+
+### TypeScript
+
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+### Docker
+
+- [Docker Documentation](https://docs.docker.com/)
+
+### Adminer
+
+- [Adminer Documentation](https://www.adminer.org/)
+
+Happy coding! 🚀
