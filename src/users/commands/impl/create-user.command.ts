@@ -1,5 +1,5 @@
-import { Prisma } from '@prisma/client';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 export class CreateUserCommand {
-  constructor(public readonly data: Prisma.UserCreateInput) {}
+  constructor(public readonly data: CreateUserDto) {}
 }

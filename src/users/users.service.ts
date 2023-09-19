@@ -7,7 +7,7 @@ import { CreateUserCommand } from './commands/impl/create-user.command';
 import { UpdateUserCommand } from './commands/impl/update-user.comman';
 import { DeleteUserCommand } from './commands/impl/delete-user.command';
 import { CreateUserDto } from './dto/create-user.dto';
-import { updateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
     private commandBus: CommandBus,
   ) {}
 
-  async user(id: number): Promise<User | null> {
+  async user(id: number): Promise<User> {
     return this.queryBus.execute(new GetUserByIdQuery(id));
   }
 
@@ -28,8 +28,7 @@ export class UserService {
     return this.commandBus.execute(new CreateUserCommand(data));
   }
 
-  async updateUser(params: { id: number; data: updateUserDto }): Promise<User> {
-    const { id, data } = params;
+  async updateUser(id: number, data: UpdateUserDto): Promise<User> {
     return this.commandBus.execute(new UpdateUserCommand(data, id));
   }
 

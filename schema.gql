@@ -15,7 +15,7 @@ type Query {
 
 type Mutation {
   createUser(CreateUserInput: CreateUserDto!): UserModel!
-  updateUser(id: Float!, UpdateUserInput: updateUserDto!): UserModel!
+  updateUser(id: Float!, UpdateUserInput: UpdateUserDto!): UserModel!
   deleteUser(id: Float!): UserModel!
 }
 
@@ -25,7 +25,7 @@ input CreateUserDto {
   password: String!
 }
 
-input updateUserDto {
+input UpdateUserDto {
   name: String
   email: String
   password: String

@@ -3,7 +3,7 @@ import { UserModel } from './user.model';
 import { UserService } from './users.service';
 import { Query } from '@nestjs/graphql';
 import { CreateUserDto } from './dto/create-user.dto';
-import { updateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Resolver((of) => UserModel)
 export class UserResolver {
@@ -44,10 +44,10 @@ export class UserResolver {
   @Mutation((returns) => UserModel)
   async updateUser(
     @Args('id') id: number,
-    @Args('UpdateUserInput') data: updateUserDto,
+    @Args('UpdateUserInput') data: UpdateUserDto,
   ): Promise<UserModel> {
     try {
-      return this.usersService.updateUser({ id, data });
+      return this.usersService.updateUser(id, data);
     } catch (error) {
       console.log('Error updating User', error);
       throw new Error(error);
